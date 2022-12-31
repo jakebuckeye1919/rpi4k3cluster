@@ -1,0 +1,16 @@
+---
+kind: PersistentVolumeClaim
+metadata:
+  name: home-assistant-config
+  labels:
+    app: home-assistant
+  annotations:
+    kubesailEditorUid: dd4a6f7d-25b4-4738-b2ca-2ba6c45d3058
+    kubesail.com/template: erulabs/home-assistant:v25
+apiVersion: v1
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
