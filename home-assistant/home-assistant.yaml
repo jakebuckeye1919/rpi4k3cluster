@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  labels:
+    app: home-assistant
+  annotations:
+    kubesailEditorUid: bbee942d-e920-4ac9-ab65-5aea55625c8f
+    kubesail.com/template: erulabs/home-assistant:v25
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      hostNetwork: true
+      privileged: true
+      initContainers:
+        - name: configure-home-assistant
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |-
+              stat /config/configuration.yaml || cat <<EOT > /config/configuration.yaml
+                # Set your HOME-ASSISTANT configuration here!
+                default_config:
+                # Text to speech
+                tts:
+                  - platform: google_translate
+                http:
+                  use_x_forwarded_for: true
+                  trusted_proxies:
+                    - 10.0.0.0/8
+                    - 172.16.0.0/12
+                    - 192.168.0.0/16
+                    - 127.0.0.1
+                    - ::1 
+              EOT
+          volumeMounts:
+            - name: home-assistant-config
+              mountPath: /config
+      containers:
+        - name: home-assistant
+          image: homeassistant/home-assistant:2022.8
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8123
+          volumeMounts:
+            - name: home-assistant-config
+              mountPath: /config
+      volumes:
+        - name: home-assistant-config
+          persistentVolumeClaim:
+            claimName: home-assistant-config
