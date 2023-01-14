@@ -25,7 +25,7 @@ spec:
             containerPort: 6379
         volumeMounts:
           - name: lv-storage
-            mountPath: /data
+            mountPath: /data/redis
         env:
             - name: ALLOW_EMPTY_PASSWORD
               value: "yes"
