@@ -11,6 +11,8 @@ spec:
       app: registry
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: registry
         name: registry
