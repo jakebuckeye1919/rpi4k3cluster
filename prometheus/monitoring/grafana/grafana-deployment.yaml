@@ -12,6 +12,9 @@ spec:
       app: grafana
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
+    metadata:
       labels:
         app: grafana
     spec:
