@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     path: apps/
-    repoURL: https://github.com/jakebuckeye1919/rpi4k3cluster.git
+    repoURL: https://github.com/jakebuckeye1919/rpi4k3cluster/argocd-install-master.gitgit
     targetRevision: HEAD
   syncPolicy:
     automated:
