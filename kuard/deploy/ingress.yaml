@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - kunard.cube.local
+    - kunard.cube.io
     secretName: quickstarte-tls
   rules:
-  - host: kunard.cube.local
+  - host: kunard.cube.io
     http:
       paths:
       - path: /
