@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - kunard.hbohica.info
+    - kunard.18d6-96-240-138-132.ngrok.io
     secretName: quickstarte-tls
   rules:
-  - host: kunard.hbohica.info
+  - host: kunard.18d6-96-240-138-132.ngrok.io
     http:
       paths:
       - path: /
