@@ -1,3 +1,4 @@
+---
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
@@ -26,12 +27,21 @@ spec:
       - node-exporter
       - kubelet
       - traefik
+  podMonitorSelector:
+    matchExpressions:
+    - key: name
+      operator: In
+      values:
+      - linkerd-controller
+      - linkerd-proxy
+      - linkerd-service-mirror
+  serviceMonitorNamespaceSelector: {}
   storage:
     volumeClaimTemplate:
       spec:
         accessModes:
           - ReadWriteOnce
-        storageClassName: longhorn
+        storageClassName: longhorn-fast
         resources:
           requests:
             storage: 50Gi
