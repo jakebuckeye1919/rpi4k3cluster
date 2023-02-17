@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - kunard.18d6-96-240-138-132.ngrok.io
+    - kunard.4856-217-114-38-125.ngrok.io
     secretName: quickstarte-tls
   rules:
-  - host: kunard.18d6-96-240-138-132.ngrok.io
+  - host: kunard.4856-217-114-38-125.ngrok.io
     http:
       paths:
       - path: /
