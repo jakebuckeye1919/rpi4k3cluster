@@ -1,3 +1,5 @@
 [submodule "dev"]
 	path = dev
 	url = ./dev
+	path = kuard
+	url = ./kuard
